@@ -5,7 +5,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var {Data} = require('./../models/data');
 mongoose.connect('mongodb://localhost:27017/Records', {useNewUrlParser: true});
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 app.use(express.static('public'))
 app.get('/', function(req, res){
