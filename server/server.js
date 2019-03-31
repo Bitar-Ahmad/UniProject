@@ -6,7 +6,7 @@ var io = require('socket.io')(http);
 var {Data} = require('./../models/data');
 
 
-mongoose.connect(process.env.MONGODB_URI , {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true});
 var port = process.env.PORT;
 
 app.use(express.static('public'))
