@@ -4,7 +4,13 @@ var mongoose = require('mongoose');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var {Data} = require('./../models/data');
-mongoose.connect('mongodb://localhost:27017/Records', {useNewUrlParser: true});
+
+var uristring =
+    process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL ||
+    'mongodb://localhost:27017/Records'
+
+mongoose.connect(uristring , {useNewUrlParser: true});
 var port = process.env.PORT || 3000;
 
 app.use(express.static('public'))
