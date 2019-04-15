@@ -11,21 +11,21 @@ if (window.DeviceMotionEvent == undefined) {
 if (window.DeviceOrientationEvent) {
   console.log("GyroScope was defined");
 };
+
+var mark;
 var acc = { x:0, y:0, z:0};
-var gyro = {gamma:0, alpha:0, beta:0};
-var acc;
-var gyro;
+var gyro = { gamma:1, alpha:1, beta:1 };
 
 
 function handleOrientation(event) {
-  var alpha    = event.alpha;
-  var gamma    = event.gamma;
-  var beta     = event.beta;
+  var alpha = event.alpha;
+  var gamma = event.gamma;
+  var beta = event.beta;
 
   document.querySelector("#xx").value = alpha;
   document.querySelector("#yy").value = gamma;
   document.querySelector("#zz").value = beta;
-	return gyro = {x:alpha, y:gamma, z:beta};
+	return gyro = { x:alpha, y:gamma, z:beta };
 }
 
 function accelerometerUpdate(event) {
@@ -39,31 +39,15 @@ function accelerometerUpdate(event) {
    return acc = {x:aX, y:aY, z:aZ};
 };
 
-// var hello = () => {
-//   setTimeout(() => {
-//     read1 = mark;
-//     console.log('0.3', read1);
-//   }, 333);
-//   setTimeout(() => {
-//     read2 = mark;
-//     console.log('0.6', read2);
-//   }, 666);
-//   setTimeout(() => {
-//     read3 = mark;
-//     console.log('1', read3);
-//   }, 1000);
-//   setTimeout(() => {
-//
-//   }, 1010);
-// };
-
 var doIt;
 var quality = false;
 
 function doSomething(){
-	var mark = { x:acc.x, y:acc.y, z:acc.z, gamma:gyro.gamma, alpha:gyro.alpha, beta:gyro.beta, timestamp:new Date().getTime(), quality:quality};
-	socket.emit('GettingData', mark);
-}
+	// mark = { x:acc.x, y:acc.y, z:acc.z, gamma:gyro.gamma, alpha:gyro.alpha, beta:gyro.beta, timestamp:new Date().getTime(), quality:quality};
+	var mark = [{John:{x:acc.x, y:acc.y, z:acc.z,timestamp:new Date().getTime(), quality:quality}}, {henry:{gamma:gyro.gamma, alpha:gyro.alpha, beta:gyro.beta}}];
+	socket.emit('GettingData', mark );
+	console.log(mark);
+};
 
 
 

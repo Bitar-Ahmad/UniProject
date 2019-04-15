@@ -40,17 +40,22 @@ io.on('connection', (socket) => {
   });
 
   socket.on('GettingData', (data) => {
+
+    var acc = data[0];
+    var gyro = data[1];
+
     var records = new Data({
-      accX:data.x,
-      accY:data.y,
-      accZ:data.z,
-      gyroGamma:data.gamma,
-      gyroAlpha:data.alpha,
-      gyroBeta:data.beta,
-      timeStamp1:data.timestamp,
-      quality:data.quality
+      accX:acc.x,
+      accY:acc.y,
+      accZ:acc.z,
+      gyroGamma:gyro.gamma,
+      gyroAlpha:gyro.alpha,
+      gyroBeta:gyro.beta,
+      timeStamp1:accX.timestamp,
+      quality:accX.quality
     });
-    records.save().then((data) => console.log(data));
+    console.log(data);
+    // records.save().then((data) => console.log(data));
   });
 
   socket.on('disconnect', () => {
