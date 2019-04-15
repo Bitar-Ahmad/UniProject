@@ -41,8 +41,8 @@ io.on('connection', (socket) => {
 
   socket.on('GettingData', (data) => {
 
-    var acc = data[0];
-    var gyro = data[1];
+    var acc = data[0].John;
+    var gyro = data[1].henry;
 
     var records = new Data({
       accX:acc.x,
@@ -51,10 +51,9 @@ io.on('connection', (socket) => {
       gyroGamma:gyro.gamma,
       gyroAlpha:gyro.alpha,
       gyroBeta:gyro.beta,
-      timeStamp1:accX.timestamp,
-      quality:accX.quality
+      timeStamp1:acc.timestamp,
+      quality:acc.quality
     });
-    console.log(data);
     records.save().then((data) => console.log(data));
   });
 
