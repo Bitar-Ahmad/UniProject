@@ -101,6 +101,26 @@ input {
 /* ========      Buttons      ========*/
 /* ===================================*/
 
+.buttonSubmit {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 400;
+  padding: 10px 30px;
+  border-radius: 200px;
+  margin-right: 20px;
+  transition: background-color 0.3s , color 0.3s;
+  background-color: #e74c3c;
+  border: 1px solid #e74c3c;
+  color: #fff;
+  cursor:pointer;
+  margin:40px 20px 40px 20px
+}
+
+.buttonSubmit:hover {
+    background-color: #e3301e;
+    border: 1px solid #e3301e;
+}
+
 .btn:link,
 .btn:visited {
     display: inline-block;
@@ -225,4 +245,14 @@ nav {
 
 .data-acc {
     text-align: center;
+}
+
+
+/* ===================================*/
+/* ========      btns-data       ========*/
+/* ===================================*/
+
+
+.btns-data {
+  text-align: center;
 }

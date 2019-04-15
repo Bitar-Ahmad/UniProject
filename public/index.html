@@ -43,28 +43,32 @@
 
             <div class="row">
                 <div class="col span-1-of-2 box">
-                    <h3>Accelerometer</h3>
-                    <div class="data acc">
-                        <h4>X:</h4>
+                    <div class="data-acc">
+                      <h3>Accelerometer</h3>
+                        <h4>acc-X:</h4>
                         <input type="text" readonly id="x" value="" /><br><br>
-                        <h4>Y:</h4>
+                        <h4>acc-Y:</h4>
                         <input type="text" readonly id="y" value="" /><br><br>
-                        <h4>Z:</h4>
+                        <h4>acc-Z:</h4>
                         <input type="text" readonly id="z" value="" /><br><br>
                     </div>
                 </div>
                 <div class="col span-1-of-2 box">
-                    <h3>GyroScope</h3>
-                    <div class="data acc">
-                        <h4>Alpha:</h4>
+                    <div class="data-acc">
+                      <h3>GyroScope</h3>
+                        <h4>Alpha&nbsp;&nbsp;&nbsp;:</h4>
                         <input type="text" readonly id="xx" value="" /><br><br>
                         <h4>Gamma:</h4>
                         <input type="text" readonly id="yy" value="" /><br><br>
-                        <h4>Beta:</h4>
+                        <h4>Beta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</h4>
                         <input type="text" readonly id="zz" value="" /><br><br>
                     </div>
-                    <button class="buttonSubmit" onclick="hello()">Click me</button>
                 </div>
+            </div>
+            <div class="btns-data">
+              <button class="buttonSubmit" onclick="sendData()">Send</button>
+              <button class="buttonSubmit" onclick="breakSending()">Stop</button>
+              <button class="buttonSubmit" onclick="toggleQuality()" id="quality">True</button>
             </div>
         </section>
     </body>
