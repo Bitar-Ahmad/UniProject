@@ -6,7 +6,7 @@ var io = require('socket.io')(http);
 var {Data} = require('./../models/data');
 
 
-mongoose.connect('mongodb://localhost:27017/Records', {useNewUrlParser: true}); // process.env.MONGODB_URL
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true}); //'mongodb://localhost:27017/Records'
 var port = process.env.PORT;
 
 app.use(express.static('public'))
@@ -32,12 +32,10 @@ io.on('connection', (socket) => {
       timeStamp1:data.timestamp,
       quality:data.quality
     });
-    console.log(data);
-    // records.save().then((data) => console.log(data));
+    records.save().then((data) => console.log(data));
   });
 
   socket.on('disconnect', () => {
-    console.log('User disconnected');
   });
 })
 
