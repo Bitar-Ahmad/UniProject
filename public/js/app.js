@@ -63,6 +63,7 @@ function doSomething(){
 			}
 		}
 	];
+	
 	socket.emit('GettingData', mark );
 	console.log(mark);
 };
