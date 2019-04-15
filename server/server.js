@@ -41,14 +41,14 @@ io.on('connection', (socket) => {
 
   socket.on('GettingData', (data) => {
     var acc = data[0].John;
-    var gyro = data[1].henry;
+    var gyro1 = data[1].henry;
     var records = new Data({
       accX:acc.x,
       accY:acc.y,
       accZ:acc.z,
-      gyroGamma:gyro.gamma,
-      gyroAlpha:gyro.alpha,
-      gyroBeta:gyro.beta,
+      gyroGamma:gyro1.gamma,
+      gyroAlpha:gyro1.alpha,
+      gyroBeta:gyro1.beta,
       timeStamp1:acc.timestamp,
       quality:acc.quality
     });

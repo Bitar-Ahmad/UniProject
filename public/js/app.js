@@ -45,7 +45,24 @@ var quality = false;
 
 function doSomething(){
 	// mark = { x:acc.x, y:acc.y, z:acc.z, gamma:gyro.gamma, alpha:gyro.alpha, beta:gyro.beta, timestamp:new Date().getTime(), quality:quality};
-	var mark = [{John:{x:acc.x, y:acc.y, z:acc.z,timestamp:new Date().getTime(), quality:quality}}, {henry:{gamma:gyro.gamma, alpha:gyro.alpha, beta:gyro.beta}}];
+	var mark = [
+		{
+			John:{
+				x:acc.x,
+				y:acc.y,
+				z:acc.z,
+				timestamp:new Date().getTime(),
+				quality:quality
+			}
+		},
+		{
+			henry: {
+				gamma:gyro.gamma,
+				alpha:gyro.alpha,
+				beta:gyro.beta
+			}
+		}
+	];
 	socket.emit('GettingData', mark );
 	console.log(mark);
 };
