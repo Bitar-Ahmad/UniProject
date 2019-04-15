@@ -63,7 +63,6 @@ var quality = false;
 function doSomething(){
 	var mark = { x:acc.x, y:acc.y, z:acc.z, gamma:gyro.gamma, alpha:gyro.alpha, beta:gyro.beta, timestamp:new Date().getTime(), quality:quality};
 	socket.emit('GettingData', mark);
-	console.log(mark);
 }
 
 
