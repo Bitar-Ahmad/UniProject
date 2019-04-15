@@ -83,7 +83,6 @@ function toggleQuality(){
 	} else {
 		document.querySelector('#quality').textContent = 'True';
 	};
-	console.log(quality);
 };
 
 //

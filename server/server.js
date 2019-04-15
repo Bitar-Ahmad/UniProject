@@ -1,13 +1,31 @@
 var app = require('express')();
 var express = require('express');
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    autoIncrement = require('mongoose-auto-increment');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var {Data} = require('./../models/data');
-
-
-mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true}); //'mongodb://localhost:27017/Records'
+// var {Data} = require('./../models/data');
 var port = process.env.PORT;
+
+
+var connection = mongoose.createConnection('mongodb://localhost:27017/Records', {useNewUrlParser: true}); //process.env.MONGODB_URL
+autoIncrement.initialize(connection);
+
+
+var dataSchema = new Schema({
+  accX: {type: Number, required: true, minlength: 1},
+  accY: {type: Number, required: true, minlength: 1},
+  accZ: {type: Number, required: true, minlength: 1},
+  gyroGamma: {type: Number, required: true, minlength: 1},
+  gyroAlpha: {type: Number, required: true, minlength: 1},
+  gyroBeta: {type: Number, required: true, minlength: 1},
+  timeStamp1: {type:Number, required:true, minlength: 1},
+  quality:{type:Boolean, required:true }
+});
+
+dataSchema.plugin(autoIncrement.plugin, 'Data');
+var Data = connection.model('Data', dataSchema);
 
 app.use(express.static('public'))
 app.get('/', function(req, res){
