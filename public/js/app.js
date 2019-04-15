@@ -31,7 +31,8 @@ function handleOrientation(event) {
 function accelerometerUpdate(event) {
    var aX = event.accelerationIncludingGravity.x;
    var aY = event.accelerationIncludingGravity.y;
-   var aZ = event.accelerationIncludingGravity.z;
+	 var aZ = event.accelerationIncludingGravity.z;
+
 
 	 document.querySelector("#x").value = aX;
 	 document.querySelector("#y").value = aY;

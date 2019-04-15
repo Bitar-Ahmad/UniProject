@@ -17,9 +17,9 @@ var dataSchema = new Schema({
   accX: {type: Number, required: true, minlength: 1},
   accY: {type: Number, required: true, minlength: 1},
   accZ: {type: Number, required: true, minlength: 1},
-  gyroGamma: {type: Number, minlength: 1},
-  gyroAlpha: {type: Number, minlength: 1},
-  gyroBeta: {type: Number,  minlength: 1},
+  gyroGamma: {},
+  gyroAlpha: {},
+  gyroBeta: {},
   timeStamp1: {type:Number, minlength: 1},
   quality:{type:Boolean, required:true }
 });
@@ -40,10 +40,8 @@ io.on('connection', (socket) => {
   });
 
   socket.on('GettingData', (data) => {
-
     var acc = data[0].John;
     var gyro = data[1].henry;
-
     var records = new Data({
       accX:acc.x,
       accY:acc.y,
@@ -54,6 +52,8 @@ io.on('connection', (socket) => {
       timeStamp1:acc.timestamp,
       quality:acc.quality
     });
+
+    console.log(data[1]);
     records.save().then((data) => console.log(data));
   });
 
