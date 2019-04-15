@@ -9,7 +9,7 @@ var io = require('socket.io')(http);
 var port = process.env.PORT;
 
 
-var connection = mongoose.createConnection(process.env.MONGODB_URL, {useNewUrlParser: true}); //process.env.MONGODB_URL
+var connection = mongoose.createConnection(process.env.MONGODB_URL, {useNewUrlParser: true}); //
 autoIncrement.initialize(connection);
 
 
@@ -17,10 +17,10 @@ var dataSchema = new Schema({
   accX: {type: Number, required: true, minlength: 1},
   accY: {type: Number, required: true, minlength: 1},
   accZ: {type: Number, required: true, minlength: 1},
-  gyroGamma: {type: Number, required: true, minlength: 1},
-  gyroAlpha: {type: Number, required: true, minlength: 1},
-  gyroBeta: {type: Number, required: true, minlength: 1},
-  timeStamp1: {type:Number, required:true, minlength: 1},
+  gyroGamma: {type: Number, minlength: 1},
+  gyroAlpha: {type: Number, minlength: 1},
+  gyroBeta: {type: Number,  minlength: 1},
+  timeStamp1: {type:Number, minlength: 1},
   quality:{type:Boolean, required:true }
 });
 
