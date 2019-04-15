@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
       quality:accX.quality
     });
     console.log(data);
-    // records.save().then((data) => console.log(data));
+    records.save().then((data) => console.log(data));
   });
 
   socket.on('disconnect', () => {
