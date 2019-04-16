@@ -1,16 +1,15 @@
 var app = require('express')();
 var express = require('express');
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    autoIncrement = require('mongoose-auto-increment');
+    Schema = mongoose.Schema;
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 // var {Data} = require('./../models/data');
 var port = process.env.PORT;
 
 
-var connection = mongoose.createConnection(process.env.MONGODB_URL, {useNewUrlParser: true}); //
-autoIncrement.initialize(connection);
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true}); //
+// autoIncrement.initialize(connection);
 
 
 var dataSchema = new Schema({
@@ -24,8 +23,8 @@ var dataSchema = new Schema({
   quality:{type:Boolean, required:true }
 });
 
-dataSchema.plugin(autoIncrement.plugin, 'Data');
-var Data = connection.model('Data', dataSchema);
+// dataSchema.plugin(autoIncrement.plugin, 'Data');
+var Data = mongoose.model('Data', dataSchema);
 
 app.use(express.static('public'))
 app.get('/', function(req, res){
@@ -48,7 +47,8 @@ io.on('connection', (socket) => {
       gyroGamma:data.gamma,
       gyroBeta:data.beta,
       timeStamp1:data.timestamp,
-      quality:data.quality
+      quality:data.quality,
+      number:data.thing
     });
     console.log(data);
     records.save().then((data) => console.log(data));

@@ -1,4 +1,5 @@
 var socket = io();
+var counter = 0;
 var mark;
 var acc = { x:0, y:0, z:0};
 var gyro = { xx:null, yy:null, zz:null };
@@ -56,9 +57,11 @@ var check1 = true;
 var quality = false;
 
 function doSomething(){
-	mark = { x:acc.x, y:acc.y, z:acc.z, alpha:gyro.aa, gamma:gyro.yy, beta:gyro.zz, timestamp:new Date().getTime(), quality:quality};
+	counter++
+	mark = { x:acc.x, y:acc.y, z:acc.z, alpha:gyro.xx, gamma:gyro.yy, beta:gyro.zz, timestamp:new Date().getTime(), quality:quality, thing:counter};
 	socket.emit('GettingData', mark );
 	console.log(mark);
+
 };
 
 function sendData(){
