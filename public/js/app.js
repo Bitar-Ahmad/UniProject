@@ -4,7 +4,7 @@ var acc = { x:0, y:0, z:0};
 var gyro = { gamma:null, alpha:null, beta:null };
 var switcher = false;
 window.addEventListener("devicemotion", accelerometerUpdate, true);
-window.addEventListener("ondeviceorientation", handleOrientation, true);
+window.addEventListener("deviceorientation", handleOrientation, true);
 
 // window.addEventListener("devicemotion", function(event){
 // 	var alpha = event.rotationRate.alpha;
