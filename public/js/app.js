@@ -1,6 +1,17 @@
 var socket = io();
 window.addEventListener("devicemotion", accelerometerUpdate, true);
-window.addEventListener("deviceorientation", handleOrientation, true);
+// window.addEventListener("ondeviceorientation", handleOrientation, true);
+
+window.addEventListener("devicemotion", function(event){
+	var alpha = event.rotationRate.alpha;
+  var gamma = event.rotationRate.gamma;
+  var beta = event.rotationRate.beta;
+
+	document.querySelector("#xx").value = alpha;
+  document.querySelector("#yy").value = gamma;
+  document.querySelector("#zz").value = beta;
+	return gyro = { x:alpha, y:gamma, z:beta };
+});
 
 var switcher = false;
 
@@ -17,22 +28,23 @@ var acc = { x:0, y:0, z:0};
 var gyro = { gamma:1, alpha:1, beta:1 };
 
 
-function handleOrientation(event) {
-  var alpha = event.alpha;
-  var gamma = event.gamma;
-  var beta = event.beta;
+// function handleOrientation(event) {
+// 	var alpha = event.alpha;
+//   var gamma = event.gamma;
+//   var beta = event.beta;
+//
+// 	document.querySelector("#xx").value = alpha;
+//   document.querySelector("#yy").value = gamma;
+//   document.querySelector("#zz").value = beta;
+// 	return gyro = { x:alpha, y:gamma, z:beta };
+//
+// }
 
-  document.querySelector("#xx").value = alpha;
-  document.querySelector("#yy").value = gamma;
-  document.querySelector("#zz").value = beta;
-	return gyro = { x:alpha, y:gamma, z:beta };
-}
 
 function accelerometerUpdate(event) {
    var aX = event.accelerationIncludingGravity.x;
    var aY = event.accelerationIncludingGravity.y;
 	 var aZ = event.accelerationIncludingGravity.z;
-
 
 	 document.querySelector("#x").value = aX;
 	 document.querySelector("#y").value = aY;
@@ -63,12 +75,10 @@ function doSomething(){
 			}
 		}
 	];
-	
+
 	socket.emit('GettingData', mark );
 	console.log(mark);
 };
-
-
 
 function sendData(){
 	 doIt = setInterval(doSomething, 200);
