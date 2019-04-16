@@ -68,11 +68,9 @@ function sendData(){
 	doIt = setInterval(doSomething, 200);
 };
 
-
-
 function breakSending(){
 	document.getElementById('stop-btn').disabled = true;
-	document.getElementById('send-btn').textContent = "Send";	
+	document.getElementById('send-btn').textContent = "Send";
 	document.getElementById('send-btn').disabled = false;
 	clearInterval(doIt);
 };
@@ -85,47 +83,3 @@ function toggleQuality(){
 		document.querySelector('#quality').textContent = 'True';
 	};
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var mark = [
-	// 	{
-		// 		John:{
-			// 			x:acc.x,
-			// 			y:acc.y,
-			// 			z:acc.z,
-			// 			timestamp:new Date().getTime(),
-			// 			quality:quality
-			// 		}
-			// 	},
-			// 	{
-				// 		henry: {
-					// 			gamma:gyro.x,
-					// 			alpha:gyro.y,
-					// 			beta:gyro.z
-					// 		}
-					// 	}
-					// ];
