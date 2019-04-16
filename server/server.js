@@ -50,7 +50,8 @@ io.on('connection', (socket) => {
       timeStamp1:data.timestamp,
       quality:data.quality
     });
-    records.save().then((data) => console.log(data));
+    console.log(data);
+    // records.save().then((data) => console.log(data));
   });
 
   socket.on('disconnect', () => {
