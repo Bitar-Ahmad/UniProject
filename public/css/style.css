@@ -109,16 +109,26 @@ input {
   border-radius: 200px;
   margin-right: 20px;
   transition: background-color 0.3s , color 0.3s;
-  background-color: #e74c3c;
-  border: 1px solid #e74c3c;
+  background-color: #5ce930;
+  border: 1px solid #5ce930;
   color: #fff;
   cursor:pointer;
   margin:40px 20px 40px 20px
 }
 
+.buttonSubmit:disabled {
+  background-color: #e3301e;
+  border: 1px solid #e3301e;
+}
+
+.buttonSubmit:disabled:hover {
+  background-color: #e3301e;
+  border: 1px solid #e3301e;
+}
+
 .buttonSubmit:hover {
-    background-color: #e3301e;
-    border: 1px solid #e3301e;
+    background-color: #38b113;
+    border: 1px solid #38b113;
 }
 
 .btn:link,

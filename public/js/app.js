@@ -1,19 +1,21 @@
 var socket = io();
-window.addEventListener("devicemotion", accelerometerUpdate, true);
-// window.addEventListener("ondeviceorientation", handleOrientation, true);
-
-window.addEventListener("devicemotion", function(event){
-	var alpha = event.rotationRate.alpha;
-  var gamma = event.rotationRate.gamma;
-  var beta = event.rotationRate.beta;
-
-	document.querySelector("#xx").value = alpha;
-  document.querySelector("#yy").value = gamma;
-  document.querySelector("#zz").value = beta;
-	return gyro = { x:alpha, y:gamma, z:beta };
-});
-
+var mark;
+var acc = { x:0, y:0, z:0};
+var gyro = { gamma:null, alpha:null, beta:null };
 var switcher = false;
+window.addEventListener("devicemotion", accelerometerUpdate, true);
+window.addEventListener("ondeviceorientation", handleOrientation, true);
+
+// window.addEventListener("devicemotion", function(event){
+// 	var alpha = event.rotationRate.alpha;
+//   var gamma = event.rotationRate.gamma;
+//   var beta = event.rotationRate.beta;
+//
+// 	document.querySelector("#xx").value = alpha;
+//   document.querySelector("#yy").value = gamma;
+//   document.querySelector("#zz").value = beta;
+// 	return gyro = { x:alpha, y:gamma, z:beta };
+// });
 
 if (window.DeviceMotionEvent == undefined) {
 	console.log("devicemotion was  not defined");
@@ -23,22 +25,16 @@ if (window.DeviceOrientationEvent) {
   console.log("GyroScope was defined");
 };
 
-var mark;
-var acc = { x:0, y:0, z:0};
-var gyro = { gamma:1, alpha:1, beta:1 };
+function handleOrientation(event) {
+	var alpha = event.alpha;
+  var gamma = event.gamma;
+  var beta = event.beta;
 
-
-// function handleOrientation(event) {
-// 	var alpha = event.alpha;
-//   var gamma = event.gamma;
-//   var beta = event.beta;
-//
-// 	document.querySelector("#xx").value = alpha;
-//   document.querySelector("#yy").value = gamma;
-//   document.querySelector("#zz").value = beta;
-// 	return gyro = { x:alpha, y:gamma, z:beta };
-//
-// }
+	document.querySelector("#xx").value = alpha;
+  document.querySelector("#yy").value = gamma;
+  document.querySelector("#zz").value = beta;
+	return gyro = { x:alpha, y:gamma, z:beta };
+}
 
 
 function accelerometerUpdate(event) {
@@ -53,38 +49,31 @@ function accelerometerUpdate(event) {
 };
 
 var doIt;
+var dommy = document.getElementById('send-btn').disabled;
+var dommy2 = document.getElementById('stop-btn').disabled;
+var check = false;
+var check1 = true;
 var quality = false;
 
 function doSomething(){
-	// mark = { x:acc.x, y:acc.y, z:acc.z, gamma:gyro.gamma, alpha:gyro.alpha, beta:gyro.beta, timestamp:new Date().getTime(), quality:quality};
-	var mark = [
-		{
-			John:{
-				x:acc.x,
-				y:acc.y,
-				z:acc.z,
-				timestamp:new Date().getTime(),
-				quality:quality
-			}
-		},
-		{
-			henry: {
-				gamma:gyro.gamma,
-				alpha:gyro.alpha,
-				beta:gyro.beta
-			}
-		}
-	];
-
+	mark = { x:acc.x, y:acc.y, z:acc.z, gamma:gyro.gamma, alpha:gyro.alpha, beta:gyro.beta, timestamp:new Date().getTime(), quality:quality};
 	socket.emit('GettingData', mark );
 	console.log(mark);
 };
 
 function sendData(){
-	 doIt = setInterval(doSomething, 200);
+	document.getElementById('send-btn').disabled = true;
+	document.getElementById('send-btn').textContent = "Sending";
+	document.getElementById('stop-btn').disabled = false;
+	doIt = setInterval(doSomething, 200);
 };
 
+
+
 function breakSending(){
+	document.getElementById('stop-btn').disabled = true;
+	document.getElementById('send-btn').textContent = "Send";	
+	document.getElementById('send-btn').disabled = false;
 	clearInterval(doIt);
 };
 
@@ -97,24 +86,46 @@ function toggleQuality(){
 	};
 };
 
-//
-//
-// const hi = function(){
-// 	setTimeout(() => {
-// 	},1000);
-// }
-//
-// var doWhile = () => {
-// 	setInterval(() => {
-// 		console.log('hello');
-// 	},500);
-// }
-//
-// var stop = () => {
-// 	clearInterval(start)
-// };
-//
-// var start = setInterval(() => {
-// 			console.log('hello');
-// 		},500);
-//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var mark = [
+	// 	{
+		// 		John:{
+			// 			x:acc.x,
+			// 			y:acc.y,
+			// 			z:acc.z,
+			// 			timestamp:new Date().getTime(),
+			// 			quality:quality
+			// 		}
+			// 	},
+			// 	{
+				// 		henry: {
+					// 			gamma:gyro.x,
+					// 			alpha:gyro.y,
+					// 			beta:gyro.z
+					// 		}
+					// 	}
+					// ];
