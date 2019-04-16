@@ -20,7 +20,8 @@ var dataSchema = new Schema({
   gyroAlpha: {type: Number, minlength: 1},
   gyroBeta: {type: Number, minlength: 1},
   timeStamp1: {type:Number, minlength: 1},
-  quality:{type:Boolean, required:true }
+  quality:{type:Boolean, required:true },
+  number:{type:Number}
 });
 
 // dataSchema.plugin(autoIncrement.plugin, 'Data');
