@@ -1,7 +1,7 @@
 var socket = io();
 var mark;
 var acc = { x:0, y:0, z:0};
-var gyro = { x:null, y:null, z:null };
+var gyro = { xx:null, yy:null, zz:null };
 var switcher = false;
 window.addEventListener("devicemotion", accelerometerUpdate, true);
 window.addEventListener("deviceorientation", handleOrientation, true);
@@ -33,7 +33,7 @@ function handleOrientation(event) {
 	document.querySelector("#xx").value = alpha;
   document.querySelector("#yy").value = gamma;
   document.querySelector("#zz").value = beta;
-	return gyro = { x:alpha, y:gamma, z:beta };
+	return gyro = { xx:alpha, yy:gamma, zz:beta };
 }
 
 
@@ -56,7 +56,7 @@ var check1 = true;
 var quality = false;
 
 function doSomething(){
-	mark = { x:acc.x, y:acc.y, z:acc.z, alpha:gyro.z, gamma:gyro.y, beta:gyro.z, timestamp:new Date().getTime(), quality:quality};
+	mark = { x:acc.x, y:acc.y, z:acc.z, alpha:gyro.aa, gamma:gyro.yy, beta:gyro.zz, timestamp:new Date().getTime(), quality:quality};
 	socket.emit('GettingData', mark );
 	console.log(mark);
 };
