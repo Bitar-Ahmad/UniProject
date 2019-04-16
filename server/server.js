@@ -44,14 +44,13 @@ io.on('connection', (socket) => {
       accX:data.x,
       accY:data.y,
       accZ:data.z,
-      gyroGamma:data.gamma,
       gyroAlpha:data.alpha,
+      gyroGamma:data.gamma,
       gyroBeta:data.beta,
       timeStamp1:data.timestamp,
       quality:data.quality
     });
-    console.log(data);
-    // records.save().then((data) => console.log(data));
+    records.save().then((data) => console.log(data));
   });
 
   socket.on('disconnect', () => {
